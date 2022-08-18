@@ -52,6 +52,13 @@ public class PCBController implements Initializable {
 
     }
 
+    /*
+     * Exits the program
+     * */
+    public void exitProg(MouseEvent mouseEvent) {
+        System.exit(0);
+    }
+
     public void chosenSpot(MouseEvent mouseEvent) {
         imageDrop.setOnMouseClicked(e -> {
             int x = (int) e.getX();
@@ -100,8 +107,6 @@ public class PCBController implements Initializable {
                 + File.separator + "PCB-Analyser"
                 + File.separator + "images";
         File userDirectory = new File(userDir);
-
-        //C:\Users\jacka\OneDrive\Documents\GitHub\PCB-Analyser\images
 
         if(!userDirectory.canRead()){
             userDirectory = new File("c:/");

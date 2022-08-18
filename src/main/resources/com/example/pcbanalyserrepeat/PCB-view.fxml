@@ -31,7 +31,8 @@
         <Label fx:id="hueLabel" layoutX="721.0" layoutY="502.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
         <Label fx:id="brightnessLabel" layoutX="721.0" layoutY="558.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
         <ComboBox fx:id="partStore" layoutX="762.0" layoutY="323.0" prefWidth="150.0" />
-      <Button fx:id="process" layoutX="710.0" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#processing" text="PRESS ME" />
+      <Button id="mainButton" fx:id="process" layoutX="686.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#processing" prefHeight="35.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@Style.css" text="PRESS ME" />
       <ImageView fx:id="processedImage" fitHeight="512.0" fitWidth="512.0" layoutX="978.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="1466.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#exitProg" styleClass="exitButton" stylesheets="@Style.css" text="X" />
     </children>
 </AnchorPane>
