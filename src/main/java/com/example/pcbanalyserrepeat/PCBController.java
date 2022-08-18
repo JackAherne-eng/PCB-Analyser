@@ -40,6 +40,7 @@ public class PCBController implements Initializable {
     private PixelReader reader;
 
     ArrayList<Integer> roots = new ArrayList<>();
+    private disjointSet S;
 
     @FXML
     @Override
@@ -93,13 +94,14 @@ public class PCBController implements Initializable {
         fileChooser.setTitle("Image Chooser");
 
         String userDir = System.getProperty("user.home")
-                + File.separator + "Google Drive"
-                + File.separator + "Waterford"
-                + File.separator + "Year 2"
-                + File.separator + "Semester 2"
-                + File.separator + "PCB-Analyser-Repeat"
+                + File.separator + "OneDrive"
+                + File.separator + "Documents"
+                + File.separator + "GitHub"
+                + File.separator + "PCB-Analyser"
                 + File.separator + "images";
         File userDirectory = new File(userDir);
+
+        //C:\Users\jacka\OneDrive\Documents\GitHub\PCB-Analyser\images
 
         if(!userDirectory.canRead()){
             userDirectory = new File("c:/");
@@ -144,11 +146,11 @@ public class PCBController implements Initializable {
                 double hue1 = color.getHue();
 
                 if(Limitations(red, green, blue, hue, red1, green1, blue1, hue1)){
-                    writer.setColor(wh, ht, Color.color(0,0,0);
+                    writer.setColor(wh, ht, Color.color(0,0,0));
                     imageSize[id] = id;
                 }
                 else {
-                    writer.setColor(wh, ht, Color.color(1,1,1);
+                    writer.setColor(wh, ht, Color.color(1,1,1));
                     imageSize[id] = 0;
                     }
                 id++;
@@ -156,6 +158,20 @@ public class PCBController implements Initializable {
             }
             processedImage.setImage(writableImage);
 
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++){
+                    if (imageSize[i * width + j] != 0 && imageSize[i * width + j + 1] != 0) {
+                        Statics.disjointSet.union(imageSize, i * width + j, i * width + j + 1);
+                    }
+                }
+            }
+
+            for(int i = 0; i < imageSize.length; i++){
+                S = Statics.disjointSet;
+                if(imageSize[i] != 0 && !roots.contains(Statics.disjointSet.find(imageSize, i))){
+                    roots.add(Statics.disjointSet.find(imageSize, i));
+                }
+            }
     }
 
     /*
