@@ -3,23 +3,20 @@ package com.example.pcbanalyserrepeat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PCBController implements Initializable {
@@ -36,7 +33,13 @@ public class PCBController implements Initializable {
     public Label hueLabel;
     public Label brightnessLabel;
     public ComboBox<Object> partStore;
+    public int[] imageSize;
+    public Button process;
+    public ImageView processedImage;
+
     private PixelReader reader;
+
+    ArrayList<Integer> roots = new ArrayList<>();
 
     @FXML
     @Override
@@ -58,7 +61,7 @@ public class PCBController implements Initializable {
             redLabel.setText(String.format("%.2f", reader.getColor(x, y).getRed()));
             greenLabel.setText(String.format("%.2f", reader.getColor(x, y).getGreen()));
             blueLabel.setText(String.format("%.2f", reader.getColor(x, y).getBlue()));
-            alphaLabel.setText("" + reader.getColor(x, y).getOpacity());
+            alphaLabel.setText(String.valueOf(reader.getArgb(x, y)));
             hueLabel.setText(String.format("%.2f", reader.getColor(x, y).getHue()));
             saturationLabel.setText(String.format("%.2f", reader.getColor(x, y).getSaturation()));
             brightnessLabel.setText(String.format("%.2f", reader.getColor(x, y).getBrightness()));
@@ -110,6 +113,58 @@ public class PCBController implements Initializable {
 
         imageDrop.setImage(image);
         inputImage = imageDrop.getImage();
+    }
+
+    public void processing(MouseEvent mouseEvent) {
+        inputImage = imageDrop.getImage();
+
+        WritableImage writableImage = new WritableImage(reader,(int) inputImage.getWidth(),(int) inputImage.getHeight());
+
+        int width = (int) inputImage.getWidth();
+        int height = (int) inputImage.getHeight();
+        PixelWriter writer = writableImage.getPixelWriter();
+
+        imageSize = new int[width * height];
+
+        Parts p = Statics.parts.search(parts -> parts.getName().equals(partStore.getValue().toString()));
+        int id = 0;
+
+        for(int ht = 0; ht < height; ht++){
+            for(int wh = 0; wh < width; wh++){
+
+                Color color = reader.getColor(wh,ht);
+                double red = p.getRed();
+                double green = p.getGreen();
+                double blue = p.getBlue();
+                double hue = p.getHue();
+
+                double red1 = color.getRed();
+                double green1 = color.getGreen();
+                double blue1 = color.getBlue();
+                double hue1 = color.getHue();
+
+                if(Limitations(red, green, blue, hue, red1, green1, blue1, hue1)){
+                    writer.setColor(wh, ht, Color.color(0,0,0);
+                    imageSize[id] = id;
+                }
+                else {
+                    writer.setColor(wh, ht, Color.color(1,1,1);
+                    imageSize[id] = 0;
+                    }
+                id++;
+                }
+            }
+            processedImage.setImage(writableImage);
+
+    }
+
+    /*
+    Limitations weren't working properly with red values, so I had to use the following code to get it to work. This was achieved by getting
+    help from Moses Ugwulo.
+    */
+
+    private static boolean Limitations(double red, double green, double blue, double hue, double red1, double green1, double blue1, double hue1) {
+        return red > red1 - 0.15 && red < red1 + 0.15 && green > green1 - 0.15 && green < green1 + 0.15 && blue > blue1 - 0.15 && blue < blue1 + 0.15 && hue > hue1 - 2 && hue < hue1 + 2;
     }
 
 }
