@@ -6,13 +6,14 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1518.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcbanalyserrepeat.PCBController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1518.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcbanalyserrepeat.PCBController">
     <children>
-        <ImageView fx:id="imageDrop" fitHeight="512.0" fitWidth="512.0" layoutX="35.0" layoutY="102.0" onMouseClicked="#chosenSpot" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="imageDrop" fitHeight="512.0" fitWidth="512.0" layoutX="44.0" layoutY="125.0" onMouseClicked="#chosenSpot" pickOnBounds="true" preserveRatio="true" />
         <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1518.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
@@ -22,17 +23,21 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField fx:id="nameText" layoutX="572.0" layoutY="323.0" />
-        <Label fx:id="saturationLabel" layoutX="721.0" layoutY="529.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="redLabel" layoutX="721.0" layoutY="383.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="greenLabel" layoutX="721.0" layoutY="410.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="blueLabel" layoutX="721.0" layoutY="441.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="alphaLabel" layoutX="721.0" layoutY="475.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="hueLabel" layoutX="721.0" layoutY="502.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="brightnessLabel" layoutX="721.0" layoutY="558.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <ComboBox fx:id="partStore" layoutX="762.0" layoutY="323.0" prefWidth="150.0" />
-      <Button id="mainButton" fx:id="process" layoutX="686.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#processing" prefHeight="35.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@Style.css" text="PRESS ME" />
-      <ImageView fx:id="processedImage" fitHeight="512.0" fitWidth="512.0" layoutX="978.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+        <TextField fx:id="nameText" layoutX="556.0" layoutY="146.0" />
+        <Label fx:id="saturationLabel" layoutX="705.0" layoutY="352.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="redLabel" layoutX="705.0" layoutY="206.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="greenLabel" layoutX="705.0" layoutY="233.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="blueLabel" layoutX="705.0" layoutY="264.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="alphaLabel" layoutX="705.0" layoutY="298.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="hueLabel" layoutX="705.0" layoutY="325.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="brightnessLabel" layoutX="705.0" layoutY="381.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <ComboBox fx:id="partStore" layoutX="746.0" layoutY="146.0" prefWidth="150.0" />
+      <Button id="mainButton" fx:id="process" layoutX="670.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#processing" prefHeight="35.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@Style.css" text="PRESS ME" />
+      <ImageView fx:id="processedImage" fitHeight="512.0" fitWidth="512.0" layoutX="970.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="1466.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#exitProg" styleClass="exitButton" stylesheets="@Style.css" text="X" />
+      <Button fx:id="rectangleBT" layoutX="631.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#drawRectangle" text="Rectangle" />
+      <TextField fx:id="rgbTolerance" layoutX="754.0" layoutY="447.0" text="0" />
+      <TextArea fx:id="disjointSetOuput" layoutX="621.0" layoutY="500.0" prefHeight="200.0" prefWidth="251.0" />
+      <Label fx:id="numofComp" layoutX="732.0" layoutY="713.0" text="Label" />
     </children>
 </AnchorPane>
