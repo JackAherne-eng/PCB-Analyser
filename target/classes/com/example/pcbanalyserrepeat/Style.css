@@ -1,0 +1,65 @@
+.mainButton {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #9b9d9e 0%, #7a7c7d 100%),
+            #7a7c7d,
+            #9b9d9e,
+            radial-gradient(center 50% 50%, radius 100%, #7a7c7d, #9b9d9e);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.3em;
+    -fx-cursor: pointer;
+}
+.mainButton:hover {
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #9b9d9e 0%, #7a7c7d 100%),
+            #7a7c7d,
+            #9b9d9e,
+            radial-gradient(center 50% 50%, radius 100%, #9b9d9e, #7a7c7d);
+}
+.mainButton:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+.mainButton Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, #7a7c7d;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}
+
+.exitButton {
+    -fx-padding: 6 10 6 10;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 8;
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #cc332e 0%, #DE716E 100%),
+            #DE716E,
+            #cc332e,
+            radial-gradient(center 50% 50%, radius 100%, #DE716E, #cc332e);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-font-weight: bold;
+    -fx-font-size: 1.3em;
+    -fx-cursor: pointer;
+}
+.exitButton:hover {
+    -fx-background-color:
+            linear-gradient(from 0% 93% to 0% 100%, #cc332e 0%, #DE716E 100%),
+            #DE716E,
+            #cc332e,
+            radial-gradient(center 50% 50%, radius 100%, #cc332e, #DE716E);
+}
+.exitButton:pressed {
+    -fx-padding: 6 10 6 10;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+.exitButton Text {
+    -fx-fill: white;
+    -fx-effect: dropshadow(gaussian, #a30000, 0, 0, 0, 2);
+}
