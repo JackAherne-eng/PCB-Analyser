@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -36,8 +37,8 @@
       <ImageView fx:id="processedImage" fitHeight="512.0" fitWidth="512.0" layoutX="970.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="1466.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#exitProg" styleClass="exitButton" stylesheets="@Style.css" text="X" />
       <Button fx:id="rectangleBT" layoutX="631.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#drawRectangle" text="Rectangle" />
-      <TextField fx:id="rgbTolerance" layoutX="754.0" layoutY="447.0" text="0" />
       <TextArea fx:id="disjointSetOuput" layoutX="621.0" layoutY="500.0" prefHeight="200.0" prefWidth="251.0" />
       <Label fx:id="numofComp" layoutX="732.0" layoutY="713.0" text="Label" />
+      <Spinner fx:id="rgbTolerance" layoutX="748.0" layoutY="446.0" />
     </children>
 </AnchorPane>

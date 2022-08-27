@@ -52,7 +52,7 @@ public class PCBController implements Initializable {
     public Button process;
     public ImageView processedImage;
     public AnchorPane rectangle;
-    public TextField rgbTolerance;
+    public Spinner<Integer> rgbTolerance;
     public TextArea disjointSetOuput;
     public Label numofComp;
     public Button rectangleBT;
@@ -68,7 +68,7 @@ public class PCBController implements Initializable {
         imageDrop.setImage(inputImage);
 
         open.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
-
+        spinner(rgbTolerance);
 
     }
 
@@ -201,8 +201,8 @@ public class PCBController implements Initializable {
 
     public void drawRectangle(MouseEvent mouseEvent) {
 
-        for (int i = 0; i < imageSize.length; i++) {
-            if (imageSize[i] != 0 && !roots.contains(Statics.disjointSet.find(imageSize, i))) {
+        for(int i = 0; i < imageSize.length; i++){
+            if (imageSize[i] != 0 && !roots.contains(Statics.disjointSet.find(imageSize, i))){
                 roots.add(Statics.disjointSet.find(imageSize, i));
             }
         }
@@ -216,17 +216,19 @@ public class PCBController implements Initializable {
             for (int i = 0; i < imageSize.length; i++) {
                 if (Statics.disjointSet.find(imageSize, i) == a) {
                     acount++;
-                }
-                if (Statics.disjointSet.find(imageSize, i) == b) {
+                } else if (Statics.disjointSet.find(imageSize, i) == b) {
                     bcount++;
                 }
             }
-            return acount - bcount;
+            return bcount - acount;
         });
+
 
         deleteRect(processedImage);
         int num = 0;
         inputImage = imageDrop.getImage();
+
+
 
         disjointSetOuput.clear();
         for (int id : roots) {
@@ -238,23 +240,24 @@ public class PCBController implements Initializable {
             double toLeft = -1;
             double toRight = -1;
 
-            for (int i = 0; i < imageSize.length; i++) {
+
+            for (int i = 0; i < imageSize.length; i++){
                 int x = i % (int) inputImage.getWidth();
                 int y = i / (int) inputImage.getWidth();
 
-
-                if (imageSize[i] != 0 && Statics.disjointSet.find(imageSize, i) == id) {
-                    if (maxHeight == -1) {
+                if (imageSize[i] != 0 && Statics.disjointSet.find(imageSize, i) == id){ //
+                    if (maxHeight == -1){
                         maxHeight = minHeight = y;
                         toLeft = toRight = x;
-                    } else {
-                        if (x < toLeft) {
+                    }
+                    else {
+                        if (x < toLeft){
                             toLeft = x;
                         }
-                        if (x > toRight) {
+                        if (x > toRight){
                             toRight = x;
                         }
-                        if (y > minHeight) {
+                        if (y > minHeight){
                             minHeight = y;
                         }
                     }
@@ -266,12 +269,12 @@ public class PCBController implements Initializable {
             rect.setTranslateX(processedImage.getLayoutX());
             rect.setTranslateY(processedImage.getLayoutY());
             ((AnchorPane) processedImage.getParent()).getChildren().add(rect);
-            rect.setStroke(Color.YELLOWGREEN);
+            rect.setStroke(Color.RED);
             rect.setFill(Color.TRANSPARENT);
             processedImage.setImage(inputImage);
 
             Text text = new Text();
-            text.setFont(Font.font("Comic Sans", FontWeight.BOLD, FontPosture.REGULAR, 20));
+            text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
             text.setX(processedImage.getLayoutX() + toLeft);
             text.setY(processedImage.getLayoutY() + maxHeight);
             text.setText(String.valueOf(num));
@@ -279,6 +282,9 @@ public class PCBController implements Initializable {
         }
         numofComp.setText(String.valueOf(num));
     }
+
+
+
 
     /*
     Limitations weren't working properly with red values, so I had to use the following code to get it to work. This was achieved by getting
@@ -294,8 +300,7 @@ public class PCBController implements Initializable {
      */
 
     public void reduceNoise(){
-
-        double noiseReduction = Double.parseDouble(rgbTolerance.getText());
+        double noiseReduction = rgbTolerance.getValue();
         double reduction = noiseReduction / 100;
         roots.removeIf(integer -> (countPixels(integer, imageSize) / imageSize.length) * 100 < reduction);
     }
@@ -328,5 +333,16 @@ public class PCBController implements Initializable {
             }
         }
         ((AnchorPane) imageView.getParent()).getChildren().removeAll(textList);
+    }
+
+    public static void spinner(Spinner<Integer> spinner) {
+
+        spinner.getEditor().textProperty().addListener((observable, oldVal, newVal) -> {
+            if(!newVal.matches("\\d*"))
+                spinner.getEditor().setText(oldVal);
+        });
+
+        spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0,100,1,1));
+        spinner.getValueFactory().setValue(0);
     }
 }
