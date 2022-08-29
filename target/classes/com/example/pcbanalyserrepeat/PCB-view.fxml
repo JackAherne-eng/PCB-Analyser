@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -58,5 +59,8 @@
       <Separator layoutX="633.0" layoutY="350.0" prefWidth="200.0" />
       <Separator layoutX="633.0" layoutY="234.0" prefWidth="200.0" />
       <Text layoutX="666.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected pixel properties" />
+      <TextArea fx:id="disjointSetOuput" layoutX="621.0" layoutY="500.0" prefHeight="200.0" prefWidth="251.0" />
+      <Label fx:id="numofComp" layoutX="732.0" layoutY="713.0" text="Label" />
+      <Spinner fx:id="rgbTolerance" layoutX="748.0" layoutY="446.0" />
     </children>
 </AnchorPane>
