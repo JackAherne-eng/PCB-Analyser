@@ -32,6 +32,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class PCBController implements Initializable {
@@ -56,6 +57,7 @@ public class PCBController implements Initializable {
     public TextArea disjointSetOuput;
     public Label numofComp;
     public Button rectangleBT;
+    public Button ranColor;
 
     private PixelReader reader;
 
@@ -188,6 +190,9 @@ public class PCBController implements Initializable {
                     if (imageSize[i * width + j] != 0 && imageSize[i * width + j + 1] != 0) {
                         Statics.disjointSet.union(imageSize, i * width + j, i * width + j + 1);
                     }
+                    if(i < height - 1 && imageSize[i * width + j] != 0 && imageSize[i * width + j + width] != 0){
+                        Statics.disjointSet.union(imageSize, i * width + j, i * width + j + width);
+                    }
                 }
             }
 
@@ -278,6 +283,36 @@ public class PCBController implements Initializable {
             ((AnchorPane) processedImage.getParent()).getChildren().add(text);
         }
         numofComp.setText(String.valueOf(num));
+    }
+
+    public void randomColour(MouseEvent mouseEvent) {
+        Random random = new Random();
+        inputImage = imageDrop.getImage();
+
+        WritableImage writableImage = new WritableImage(reader,(int) inputImage.getWidth(),(int) inputImage.getHeight());
+
+        int width = (int) inputImage.getWidth();
+        int height = (int) inputImage.getHeight();
+        PixelWriter writer = writableImage.getPixelWriter();
+
+        for (int i : roots){
+            int red = random.nextInt(255);
+            int green = random.nextInt(255);
+            int blue = random.nextInt(255);
+
+            Color colour = Color.rgb(red, green, blue);
+            Color white = Color.WHITE;
+
+            for (int a = 0; a <imageSize.length; a++){
+                if(imageSize[a] != 0 && Statics.disjointSet.find(imageSize, a) == i){
+                    writer.setColor(a % width, a / height, colour);
+                }
+                else if(imageSize[a] == 0 && Statics.disjointSet.find(imageSize, a) != i){
+                    writer.setColor(a % width, a / height, white);
+                }
+            }
+        }
+        processedImage.setImage(writableImage);
     }
 
     /*
