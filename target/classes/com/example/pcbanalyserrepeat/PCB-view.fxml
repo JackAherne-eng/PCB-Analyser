@@ -6,10 +6,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="1518.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pcbanalyserrepeat.PCBController">
     <children>
@@ -23,21 +25,38 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextField fx:id="nameText" layoutX="556.0" layoutY="146.0" />
-        <Label fx:id="saturationLabel" layoutX="705.0" layoutY="352.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="redLabel" layoutX="705.0" layoutY="206.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="greenLabel" layoutX="705.0" layoutY="233.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="blueLabel" layoutX="705.0" layoutY="264.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="alphaLabel" layoutX="705.0" layoutY="298.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="hueLabel" layoutX="705.0" layoutY="325.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <Label fx:id="brightnessLabel" layoutX="705.0" layoutY="381.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
-        <ComboBox fx:id="partStore" layoutX="746.0" layoutY="146.0" prefWidth="150.0" />
-      <Button id="mainButton" fx:id="process" layoutX="670.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#processing" prefHeight="35.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@Style.css" text="PRESS ME" />
+        <TextField fx:id="nameText" layoutX="556.0" layoutY="146.0" promptText="Choose part name..." />
+        <Label fx:id="saturationLabel" layoutX="684.0" layoutY="334.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="redLabel" layoutX="684.0" layoutY="235.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="greenLabel" layoutX="684.0" layoutY="254.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="blueLabel" layoutX="684.0" layoutY="277.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="alphaLabel" layoutX="684.0" layoutY="296.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="hueLabel" layoutX="684.0" layoutY="315.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <Label fx:id="brightnessLabel" layoutX="684.0" layoutY="353.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+        <ComboBox fx:id="partStore" layoutX="746.0" layoutY="146.0" prefWidth="150.0" promptText="Select part name" />
+      <Button id="mainButton" fx:id="process" layoutX="678.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#processing" prefHeight="35.0" prefWidth="108.0" styleClass="mainButton" stylesheets="@Style.css" text="PRESS ME" />
       <ImageView fx:id="processedImage" fitHeight="512.0" fitWidth="512.0" layoutX="970.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="1466.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#exitProg" styleClass="exitButton" stylesheets="@Style.css" text="X" />
       <Button fx:id="rectangleBT" layoutX="631.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#drawRectangle" text="Rectangle" />
-      <TextField fx:id="rgbTolerance" layoutX="754.0" layoutY="447.0" text="0" />
+      <TextField fx:id="rgbTolerance" layoutX="754.0" layoutY="447.0" text="1" />
       <TextArea fx:id="disjointSetOuput" layoutX="621.0" layoutY="500.0" prefHeight="200.0" prefWidth="251.0" />
-      <Label fx:id="numofComp" layoutX="732.0" layoutY="713.0" text="Label" />
+      <Label fx:id="numofComp" layoutX="686.0" layoutY="713.0" text="Label" />
+      <Button fx:id="ranColor" layoutX="696.0" layoutY="747.0" mnemonicParsing="false" onMouseClicked="#randomColour" text="Random Colour" />
+      <Text layoutX="764.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Red" />
+      <Text layoutX="764.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Green" />
+      <Text layoutX="764.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Blue" />
+      <Text layoutX="764.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alpha" />
+      <Text layoutX="763.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hue" />
+      <Text layoutX="762.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saturation" />
+      <Text layoutX="761.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brightness" />
+      <Text layoutX="733.0" layoutY="726.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of disjoint sets" />
+      <Separator layoutX="633.0" layoutY="251.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="270.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="293.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="312.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="331.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="350.0" prefWidth="200.0" />
+      <Separator layoutX="633.0" layoutY="234.0" prefWidth="200.0" />
+      <Text layoutX="666.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selected pixel properties" />
     </children>
 </AnchorPane>
